@@ -170,3 +170,9 @@ Route::group(['namespace' => 'MyParent','middleware' => 'my_parent',], function(
     Route::get('/my_children', 'MyController@children')->name('my_children');
 
 });
+
+/************* DropDown Menus *****************/
+Route::get('/findSubcounty', [App\Http\Controllers\DropdownController::class, 'findSubcounty'])->name('/findSubcounty')->middleware('auth');
+Route::get('/findParish', [App\Http\Controllers\DropdownController::class, 'findParish'])->name('/findParish')->middleware('auth');
+Route::get('/findVillage', [App\Http\Controllers\DropdownController::class, 'findVillage'])->name('/findVillage')->middleware('auth');
+

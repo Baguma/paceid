@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="dorm_id">District: </label>
-                            <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                            <select data-placeholder="Choose..."  name="district" id="districtid" class="select-search form-control">
                                 <option value=""></option>
                                 @foreach($districts as $d)
                                     <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $d->id }}">{{ $d->name }}</option>
@@ -142,11 +142,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Sub County:</label>
-                                <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                                <select data-placeholder="Choose..."  name="subcounty" id="subcountyid" class="select-search form-control">
                                     <option value=""></option>
-                                    @foreach($subcounties as $sc)
-                                        <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $sc->id }}">{{ $sc->name }}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -154,11 +152,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Parish:</label>
-                                <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                                <select data-placeholder="Choose..."  name="parish" id="parishid" class="select-search form-control">
                                     <option value=""></option>
-                                    @foreach($parishes as $pr)
-                                        <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $pr->id }}">{{ $pr->name }}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -166,11 +162,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Village:</label>
-                                <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                                <select data-placeholder="Choose..."  name="village" id="villageid" class="select-search form-control">
                                     <option value=""></option>
-                                    @foreach($villages as $vl)
-                                        <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $vl->id }}">{{ $vl->name }}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -179,7 +173,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="dorm_id">District: </label>
-                            <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                            <select data-placeholder="Choose..."  name="districth" id="districthid" class="select-search form-control">
                                 <option value=""></option>
                                 @foreach($districts as $d)
                                     <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $d->id }}">{{ $d->name }}</option>
@@ -191,11 +185,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Sub County:</label>
-                                <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                                <select data-placeholder="Choose..."  name="subcountyh" id="subcountyhid" class="select-search form-control">
                                     <option value=""></option>
-                                    @foreach($subcounties as $sc)
-                                        <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $sc->id }}">{{ $sc->name }}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -203,11 +195,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Parish:</label>
-                                <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                                <select data-placeholder="Choose..."  name="parishh" id="parishhid" class="select-search form-control">
                                     <option value=""></option>
-                                    @foreach($parishes as $pr)
-                                        <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $pr->id }}">{{ $pr->name }}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -215,11 +205,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Village:</label>
-                                <select data-placeholder="Choose..."  name="dorm_id" id="dorm_id" class="select-search form-control">
+                                <select data-placeholder="Choose..."  name="villageh" id="villagehid" class="select-search form-control">
                                     <option value=""></option>
-                                    @foreach($villages as $vl)
-                                        <option {{ (old('dorm_id') == $d->id) ? 'selected' : '' }} value="{{ $vl->id }}">{{ $vl->name }}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -269,4 +257,162 @@
                 </fieldset>
             </form>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(document).on('change', '#districtid', function(){
+                    var districtid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(districtid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findSubcounty') }}",
+                        data: {'id':districtid},
+                        success: function(data){
+                            console.log(data);
+                            opt += '<option value=""> Choose One</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                            }
+
+                            $("#subcountyid").html(opt);
+                            $('.subcountyid').append(opt);
+                            //$("#subcountyid").selectpicker('refresh');
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+                $(document).on('change', '#subcountyid', function(){
+                    var subcountyid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(subcountyid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findParish') }}",
+                        data: {'id':subcountyid},
+                        success: function(data){
+                            console.log(data);
+                            opt += '<option value=""> Choose One</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                            }
+                            $("#parishid").html("");
+                            $("#parishid").append(opt);
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+                $(document).on('change', '#parishid', function(){
+                    var parishid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(parishid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findVillage') }}",
+                        data: {'id':parishid},
+                        success: function(data){
+                            console.log(data);
+                            opt += '<option value=""> Choose One</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                            }
+                            $("#villageid").html("");
+                            $("#villageid").append(opt);
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+                $(document).on('change', '#districthid', function(){
+                    var districtid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(districtid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findSubcounty') }}",
+                        data: {'id':districtid},
+                        success: function(data){
+                            console.log(data);
+                            opt += '<option value=""> Choose One</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                            }
+
+                            $("#subcountyhid").html(opt);
+                            $('.subcountyhid').append(opt);
+                            //$("#subcountyid").selectpicker('refresh');
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+                $(document).on('change', '#subcountyhid', function(){
+                    var subcountyid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(subcountyid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findParish') }}",
+                        data: {'id':subcountyid},
+                        success: function(data){
+                            console.log(data);
+                            opt += '<option value=""> Choose One</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                            }
+                            $("#parishhid").html("");
+                            $("#parishhid").append(opt);
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+                $(document).on('change', '#parishhid', function(){
+                    var parishid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(parishid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findVillage') }}",
+                        data: {'id':parishid},
+                        success: function(data){
+                            console.log(data);
+                            opt += '<option value=""> Choose One</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                            }
+                            $("#villagehid").html("");
+                            $("#villagehid").append(opt);
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+            });
+        </script>
     @endsection

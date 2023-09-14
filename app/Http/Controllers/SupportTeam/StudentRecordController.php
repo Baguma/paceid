@@ -55,10 +55,10 @@ class StudentRecordController extends Controller
         $data['dorms'] = $this->student->getAllDorms();
         $data['states'] = $this->loc->getStates();
         $data['nationals'] = $this->loc->getAllNationals();
-        $data['districts'] = District::all();
-        $data['subcounties'] = SubCounty::all();
+        $data['districts'] = District::orderby('name', 'asc')->get();
+        /*$data['subcounties'] = SubCounty::all();
         $data['parishes'] = Parish::all();
-        $data['villages'] = Village::all();
+        $data['villages'] = Village::all();*/
         $data['maritalstatuses'] = MaritalStatus::all();
         $data['occupations'] = Occupation::all();
         $data['challenges'] = Challenge::all();
