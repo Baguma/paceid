@@ -239,6 +239,7 @@
                 displayAjaxErr(errors);
             }
            if(e.status == 500){
+               console.log(e);
                displayAjaxErr([e.status + ' ' + e.statusText + ' Please Check for Duplicate entry or Contact Administrator/IT Personnel'])
            }
             if(e.status == 404){

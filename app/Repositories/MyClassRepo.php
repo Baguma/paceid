@@ -52,7 +52,7 @@ class MyClassRepo
 
     public function findTypeByClass($class_id)
     {
-        return true; //ClassType::find($this->find($class_id)->class_type_id);
+        return ClassType::find($this->find($class_id)->class_type_id);
     }
 
     /************* Section *******************/
