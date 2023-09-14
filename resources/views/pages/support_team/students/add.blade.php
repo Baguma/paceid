@@ -75,7 +75,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="nal_id">Marital Status: <span class="text-danger">*</span></label>
-                                <select data-placeholder="Choose..." required name="nal_id" id="nal_id" class="select-search form-control">
+                                <select data-placeholder="Choose..." required name="marital_status" id="marital_status" class="select-search form-control">
                                     <option value=""></option>
                                     @foreach($maritalstatuses as $nal)
                                         <option {{ (old('nal_id') == $nal->id ? 'selected' : '') }} value="{{ $nal->id }}">{{ $nal->name }}</option>
@@ -86,7 +86,7 @@
 
                         <div class="col-md-3">
                             <label for="state_id">Occupation: <span class="text-danger">*</span></label>
-                            <select required data-placeholder="Choose.." class="select-search form-control" name="state_id" id="state_id">
+                            <select required data-placeholder="Choose.." class="select-search form-control" name="occupation" id="occupation">
                                 <option value=""></option>
                                 @foreach($occupations as $st)
                                     <option {{ (old('state_id') == $st->id ? 'selected' : '') }} value="{{ $st->id }}">{{ $st->name }}</option>
@@ -96,7 +96,7 @@
 
                         <div class="col-md-3">
                             <label for="lga_id">Highest Education: <span class="text-danger">*</span></label>
-                            <select required data-placeholder="Select Highest Education" class="select-search form-control" name="lga_id" id="lga_id">
+                            <select required data-placeholder="Select Highest Education" class="select-search form-control" name="education_level" id="lga_id">
                                 <option value=""></option>
                                 @foreach($education as $ed)
                                     <option {{ (old('state_id') == $ed->id ? 'selected' : '') }} value="{{ $ed->id }}">{{ $ed->name }}</option>
@@ -220,7 +220,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="bg_id">Challenge: </label>
-                                <select class="select form-control" id="bg_id" name="bg_id" data-fouc data-placeholder="Choose..">
+                                <select class="select form-control" id="challenge" name="challenge" data-fouc data-placeholder="Choose..">
                                     <option value=""></option>
                                     @foreach($challenges as $ch)
                                         <option {{ (old('bg_id') == $bg->id ? 'selected' : '') }} value="{{ $ch->id }}">{{ $ch->name }}</option>
@@ -231,7 +231,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="d-block">Details about the Challenge:</label>
-                                <textarea class="form-input-styled form-control" name="notes">{{ old('photo') }}</textarea>
+                                <textarea class="form-input-styled form-control" name="challenge_notes">{{ old('photo') }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="bg_id">Area of Support: </label>
-                                <select class="select form-control" id="bg_id" name="bg_id" data-fouc data-placeholder="Choose..">
+                                <select class="select form-control" id="support_area" name="support_area" data-fouc data-placeholder="Choose..">
                                     <option value=""></option>
                                     @foreach($support as $sp)
                                         <option {{ (old('bg_id') == $bg->id ? 'selected' : '') }} value="{{ $sp->id }}">{{ $sp->name }}</option>
@@ -250,7 +250,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="d-block">Details:</label>
-                                <textarea class="form-input-styled form-control" name="notes">{{ old('photo') }}</textarea>
+                                <textarea class="form-input-styled form-control" name="support_area_notes">{{ old('photo') }}</textarea>
                             </div>
                         </div>
                     </div>

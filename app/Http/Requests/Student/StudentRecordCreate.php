@@ -21,7 +21,7 @@ class StudentRecordCreate extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:6|max:150',
+            /*'name' => 'required|string|min:6|max:150',
             'adm_no' => 'sometimes|nullable|alpha_num|min:3|max:150|unique:student_records',
             'gender' => 'required|string',
             'year_admitted' => 'required|string',
@@ -36,21 +36,21 @@ class StudentRecordCreate extends FormRequest
             'my_class_id' => 'required',
             'section_id' => 'required',
             'my_parent_id' => 'sometimes|nullable',
-            'dorm_id' => 'sometimes|nullable',
+            'dorm_id' => 'sometimes|nullable',*/
         ];
     }
 
     public function attributes()
     {
         return  [
-            'section_id' => 'Section',
+            /*'section_id' => 'Section',
             'nal_id' => 'Nationality',
             'my_class_id' => 'Class',
             'dorm_id' => 'Dormitory',
             'state_id' => 'State',
             'lga_id' => 'LGA',
             'bg_id' => 'Blood Group',
-            'my_parent_id' => 'Parent',
+            'my_parent_id' => 'Parent',*/
         ];
     }
 
@@ -58,7 +58,7 @@ class StudentRecordCreate extends FormRequest
     {
         $input = $this->all();
 
-        $input['my_parent_id'] = $input['my_parent_id'] ? Qs::decodeHash($input['my_parent_id']) : NULL;
+        //$input['my_parent_id'] = $input['my_parent_id'] ? Qs::decodeHash($input['my_parent_id']) : NULL;
 
         $this->getInputSource()->replace($input);
 

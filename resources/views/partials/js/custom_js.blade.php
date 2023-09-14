@@ -229,6 +229,7 @@
             hideAjaxAlert();
             enableBtn(btn);
             formType == 'store' ? clearForm(form) : '';
+            //displayAjaxSuccess(['Record has been successfully saved']);
             scrollTo('body');
             return resp;
         });
@@ -238,7 +239,7 @@
                 displayAjaxErr(errors);
             }
            if(e.status == 500){
-               displayAjaxErr([e.status + ' ' + e.statusText + ' Please Check for Duplicate entry or Contact School Administrator/IT Personnel'])
+               displayAjaxErr([e.status + ' ' + e.statusText + ' Please Check for Duplicate entry or Contact Administrator/IT Personnel'])
            }
             if(e.status == 404){
                displayAjaxErr([e.status + ' ' + e.statusText + ' - Requested Resource or Record Not Found'])
@@ -261,6 +262,14 @@
     function displayAjaxErr(errors){
         $('#ajax-alert').show().html(' <div class="alert alert-danger border-0 alert-dismissible" id="ajax-msg"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>');
         $.each(errors, function(k, v){
+            $('#ajax-msg').append('<span><i class="icon-arrow-right5"></i> '+ v +'</span><br/>');
+        });
+        scrollTo('body');
+    }
+
+    function displayAjaxSuccess(msg){
+        $('#ajax-alert').show().html(' <div class="alert alert-success border-0 alert-dismissible" id="ajax-msg"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>');
+        $.each(msg, function(k, v){
             $('#ajax-msg').append('<span><i class="icon-arrow-right5"></i> '+ v +'</span><br/>');
         });
         scrollTo('body');
