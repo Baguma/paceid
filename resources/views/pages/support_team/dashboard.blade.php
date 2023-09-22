@@ -9,7 +9,7 @@
                    <div class="media">
                        <div class="media-body">
                            <h3 class="mb-0">{{ $users->where('user_type', 'student')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs font-weight-bold">Total Students</span>
+                           <span class="text-uppercase font-size-xs font-weight-bold">Registered Beneficiaries</span>
                        </div>
 
                        <div class="ml-3 align-self-center">
@@ -23,12 +23,12 @@
                <div class="card card-body bg-danger-400 has-bg-image">
                    <div class="media">
                        <div class="media-body">
-                           <h3 class="mb-0">{{ $users->where('user_type', 'teacher')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs">Total Teachers</span>
+                           <h3 class="mb-0">{{ $users->where('gender', '=', 'Male')->where('user_type', 'student')->count() }}</h3>
+                           <span class="text-uppercase font-size-xs">Total Male</span>
                        </div>
 
                        <div class="ml-3 align-self-center">
-                           <i class="icon-users2 icon-3x opacity-75"></i>
+                           <i class="icon-man icon-3x opacity-75"></i>
                        </div>
                    </div>
                </div>
@@ -38,12 +38,12 @@
                <div class="card card-body bg-success-400 has-bg-image">
                    <div class="media">
                        <div class="mr-3 align-self-center">
-                           <i class="icon-pointer icon-3x opacity-75"></i>
+                           <i class="icon-woman icon-3x opacity-75"></i>
                        </div>
 
                        <div class="media-body text-right">
-                           <h3 class="mb-0">{{ $users->where('user_type', 'admin')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs">Total Administrators</span>
+                           <h3 class="mb-0">{{ $users->where('gender', '=', 'Female')->where('user_type', 'student')->count() }}</h3>
+                           <span class="text-uppercase font-size-xs">Total Female</span>
                        </div>
                    </div>
                </div>
@@ -58,7 +58,7 @@
 
                        <div class="media-body text-right">
                            <h3 class="mb-0">{{ $users->where('user_type', 'parent')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs">Total Parents</span>
+                           <span class="text-uppercase font-size-xs">.</span>
                        </div>
                    </div>
                </div>
@@ -69,7 +69,7 @@
     {{--Events Calendar Begins--}}
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h5 class="card-title">School Events Calendar</h5>
+            <h5 class="card-title">Events Calendar</h5>
          {!! Qs::getPanelOptions() !!}
         </div>
 

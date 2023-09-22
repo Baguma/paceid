@@ -101,7 +101,12 @@ class Qs
 
     public static function getStudentData($remove = [])
     {
-        $data = ['my_class_id', 'section_id', 'my_parent_id', 'dorm_id', 'dorm_room_no', 'year_admitted', 'house', 'age'];
+        $data = [
+            'my_class_id', 'section_id', 'my_parent_id', 'dorm_id', 'dorm_room_no', 'year_admitted', 'house', 'age',
+            'marital_status', 'occupation', 'education_level', 'district_residence', 'subcounty_residence',
+            'parish_residence', 'village_residence', 'district_home', 'subcounty_home', 'parish_home', 'village_home',
+            'challenge', 'challenge_notes', 'support', 'support_notes', 'nin'
+        ];
 
         return $remove ? array_values(array_diff($data, $remove)) : $data;
 

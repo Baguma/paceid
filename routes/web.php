@@ -171,6 +171,14 @@ Route::group(['namespace' => 'MyParent','middleware' => 'my_parent',], function(
 
 });
 
+/*************** Pins *****************/
+Route::group(['prefix' => 'reports'], function(){
+    Route::get('view', 'ReportsController@view')->name('reports.view');
+    Route::get('graphical', 'ReportsController@graphical')->name('reports.graphical');
+    Route::get('pivot', 'ReportsController@pivot')->name('reports.pivot');
+});
+Route::get('/reports/anaylsisdata', [App\Http\Controllers\ReportsController::class, 'anaylsisdata'])->name('/reports/anaylsisdata')->middleware('auth');
+
 /************* DropDown Menus *****************/
 Route::get('/findSubcounty', [App\Http\Controllers\DropdownController::class, 'findSubcounty'])->name('/findSubcounty')->middleware('auth');
 Route::get('/findParish', [App\Http\Controllers\DropdownController::class, 'findParish'])->name('/findParish')->middleware('auth');

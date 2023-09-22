@@ -12,7 +12,10 @@ class StudentRecord extends Eloquent
 
     protected $fillable = [
         'session', 'user_id', 'my_class_id', 'section_id', 'my_parent_id', 'dorm_id', 'dorm_room_no', 'adm_no',
-        'year_admitted', 'wd', 'wd_date', 'grad', 'grad_date', 'house', 'age'
+        'year_admitted', 'wd', 'wd_date', 'grad', 'grad_date', 'house', 'age', 'marital_status', 'occupation',
+        'education_level', 'district_residence', 'subcounty_residence', 'parish_residence', 'village_residence',
+        'district_home', 'subcounty_home', 'parish_home', 'village_home', 'challenge', 'challenge_notes', 'support',
+        'support_notes', 'nin'
     ];
 
     public function user()

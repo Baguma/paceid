@@ -100,6 +100,26 @@ class StudentRecordController extends Controller
         $sr['user_id'] = $user->id;
         $sr['session'] = Qs::getSetting('current_session');
 
+        $sr['marital_status'] = $req->marital_status;
+        $sr['occupation'] = $req->occupation;
+        $sr['education_level'] = $req->education_level;
+        $sr['nin'] = $req->nin;
+
+        $sr['district_residence'] = $req->district;
+        $sr['subcounty_residence'] = $req->subcounty;
+        $sr['parish_residence'] = $req->parish;
+        $sr['village_residence'] = $req->village;
+
+        $sr['district_home'] = $req->districth;
+        $sr['subcounty_home'] = $req->subcountyh;
+        $sr['parish_home'] = $req->parishh;
+        $sr['village_home'] = $req->villageh;
+
+        $sr['challenge'] = $req->challenge;
+        $sr['challenge_notes'] = $req->challenge_notes;
+        $sr['support'] = $req->support_area;
+        $sr['support_notes'] = $req->support_area_notes;
+
         $this->student->createRecord($sr); // Create Student
         return Qs::jsonStoreOk();
     }
