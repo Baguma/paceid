@@ -73,7 +73,7 @@ class StudentRecordController extends Controller
        $data =  $req->only(Qs::getUserRecord());
        $sr =  $req->only(Qs::getStudentData());
 
-        $ct = 5; //$this->my_class->findTypeByClass($req->my_class_id)->code;
+        $ct = $this->my_class->findTypeByClass(6)->code;
        /* $ct = ($ct == 'J') ? 'JSS' : $ct;
         $ct = ($ct == 'S') ? 'SS' : $ct;*/
 
@@ -103,7 +103,6 @@ class StudentRecordController extends Controller
         $sr['marital_status'] = $req->marital_status;
         $sr['occupation'] = $req->occupation;
         $sr['education_level'] = $req->education_level;
-        $sr['nin'] = $req->nin;
 
         $sr['district_residence'] = $req->district;
         $sr['subcounty_residence'] = $req->subcounty;
@@ -119,6 +118,10 @@ class StudentRecordController extends Controller
         $sr['challenge_notes'] = $req->challenge_notes;
         $sr['support'] = $req->support_area;
         $sr['support_notes'] = $req->support_area_notes;
+
+        $sr['nin'] = $req->nin;
+
+
 
         $this->student->createRecord($sr); // Create Student
         return Qs::jsonStoreOk();
