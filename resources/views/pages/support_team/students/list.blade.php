@@ -1,16 +1,16 @@
 @extends('layouts.master')
-@section('page_title', 'Student Information - '.$my_class->name)
+@section('page_title', 'Beneficiary Information - ')
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Students List</h6>
+            <h6 class="card-title">Beneficiaries List</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="nav-item"><a href="#all-students" class="nav-link active" data-toggle="tab">All {{ $my_class->name }} Students</a></li>
+                <li class="nav-item"><a href="#all-students" class="nav-link active" data-toggle="tab">All Beneficiaries</a></li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sections</a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -29,9 +29,9 @@
                             <th>S/N</th>
                             <th>Photo</th>
                             <th>Name</th>
-                            <th>ADM_No</th>
-                            <th>Section</th>
-                            <th>Email</th>
+                            <th>Reg. No</th>
+                            <th>NIN</th>
+                            <th>Phone</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -42,8 +42,8 @@
                                 <td><img class="rounded-circle" style="height: 40px; width: 40px;" src="{{ $s->user->photo }}" alt="photo"></td>
                                 <td>{{ $s->user->name }}</td>
                                 <td>{{ $s->adm_no }}</td>
-                                <td>{{ $my_class->name }}</td>
-                                <td>{{ $s->user->email }}</td>
+                                <td>{{ $s->nin }}</td>
+                                <td>{{ $s->user->phone }}</td>
                                 <td class="text-center">
                                     <div class="list-icons">
                                         <div class="dropdown">

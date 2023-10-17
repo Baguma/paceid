@@ -99,6 +99,7 @@ class StudentRecordController extends Controller
         $sr['adm_no'] = $data['username'];
         $sr['user_id'] = $user->id;
         $sr['session'] = Qs::getSetting('current_session');
+        $sr['my_class_id'] = '6';
 
         $sr['marital_status'] = $req->marital_status;
         $sr['occupation'] = $req->occupation;
@@ -133,6 +134,8 @@ class StudentRecordController extends Controller
         $data['students'] = $this->student->findStudentsByClass($class_id);
         $data['sections'] = $this->my_class->getClassSections($class_id);
 
+
+        //return $data;
         return is_null($mc) ? Qs::goWithDanger() : view('pages.support_team.students.list', $data);
     }
 

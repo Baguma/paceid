@@ -284,6 +284,11 @@ class Qs
         return self::getSetting('system_name');
     }
 
+    public static function getSystemAcronym()
+    {
+        return self::getSetting('system_title');
+    }
+
     public static function findMyChildren($parent_id)
     {
         return StudentRecord::where('my_parent_id', $parent_id)->with(['user', 'my_class'])->get();
