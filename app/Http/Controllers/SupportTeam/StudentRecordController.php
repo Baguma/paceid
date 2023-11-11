@@ -122,7 +122,8 @@ class StudentRecordController extends Controller
 
         $sr['nin'] = $req->nin;
 
-
+        $sr['is_refugee'] = $req->isrefugee;
+        $sr['refugee_camps_id'] = $req->refugee_camp;
 
         $this->student->createRecord($sr); // Create Student
         return Qs::jsonStoreOk();

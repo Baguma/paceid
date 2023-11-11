@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Parish;
+use App\Models\RefugeeCamp;
 use App\Models\SubCounty;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -26,5 +27,11 @@ class DropdownController extends Controller
         $village = Village::select('id','name')->where('parishes_id', $request->id)->get();
 
         return Response::json($village);
+    }
+
+    public function findCamps(Request $request){
+        $camps = RefugeeCamp::select('id','name')->get();
+
+        return Response::json($camps);
     }
 }

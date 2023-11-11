@@ -212,6 +212,27 @@
                             </div>
                         </div>
                     </div>
+                    <h4>Refugee Status</h4>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="isrefugee">Is Refugee: <span class="text-danger">*</span></label>
+                                <select class="select form-control" id="isrefugeeid" name="isrefugee" data-fouc data-placeholder="Choose..">
+                                    <option {{ (old('isrefugee') == 'No') ? 'selected' : '' }} value="No">No</option>
+                                    <option {{ (old('isrefugee') == 'Yes') ? 'selected' : '' }} value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Refugee Camp:</label>
+                                <select data-placeholder="Choose..."  name="refugee_camp" id="campsid" class="select-search form-control">
+                                    <option value=""></option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <h6>Needs & Support</h6>
@@ -406,6 +427,33 @@
                             }
                             $("#villagehid").html("");
                             $("#villagehid").append(opt);
+                        },
+                        error: function(){
+                            console.log('Failed');
+                        }
+                    });
+                });
+
+                $(document).on('change', '#isrefugeeid', function(){
+                    var isrefugeeid = $(this).val();
+                    var select = $(this).parent();
+
+                    console.log(isrefugeeid);
+                    var opt = " ";
+                    $.ajax({
+                        type: 'get',
+                        url: "{{ route('/findCamps') }}",
+                        data: {'id':isrefugeeid},
+                        success: function(data){
+                            console.log(data);
+                            if(isrefugeeid == "Yes") {
+                                opt += '<option value=""> Choose One</option>';
+                                for (var i = 0; i < data.length; i++) {
+                                    opt += '<option value="' + data[i].id + '"> ' + data[i].name + '</option>';
+                                }
+                            }
+                            $("#campsid").html("");
+                            $("#campsid").append(opt);
                         },
                         error: function(){
                             console.log('Failed');

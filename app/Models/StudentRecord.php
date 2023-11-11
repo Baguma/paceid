@@ -15,7 +15,7 @@ class StudentRecord extends Eloquent
         'year_admitted', 'wd', 'wd_date', 'grad', 'grad_date', 'house', 'age', 'marital_status', 'occupation',
         'education_level', 'district_residence', 'subcounty_residence', 'parish_residence', 'village_residence',
         'district_home', 'subcounty_home', 'parish_home', 'village_home', 'challenge', 'challenge_notes', 'support',
-        'support_notes', 'nin'
+        'support_notes', 'nin', 'is_refugee', 'refugee_camps_id'
     ];
 
     public function user()
