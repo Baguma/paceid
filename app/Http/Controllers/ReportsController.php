@@ -21,7 +21,7 @@ class ReportsController extends Controller
             ->select('u.name as name', 'u.dob as dob', 'u.gender as gender', 'u.phone as phone', 'ms.name as marital_status',
                 'o.name as occupation', 'el.name as educationlevels', 'd.name as districtresidence', 'sc.name as subcountyresidence',
                 'p.name as parishresidence', 'v.name as villageresidence', 'dh.name as districthome', 'sch.name as subcountyhome',
-                'ph.name as parishhome', 'vh.name as villagehome')
+                'ph.name as parishhome', 'vh.name as villagehome', 'sr.is_refugee as isrefugee', 'rc.name as refugee_camp')
             ->leftJoin('student_records as sr', 'sr.user_id', '=', 'u.id')
             ->leftJoin('marital_statuses as ms', 'sr.marital_status', '=', 'ms.id')
             ->leftJoin('occupations as o', 'sr.occupation', '=', 'o.id')
@@ -35,6 +35,8 @@ class ReportsController extends Controller
             ->leftJoin('sub_counties as sch', 'sr.subcounty_home', '=', 'sch.id')
             ->leftJoin('parishes as ph', 'sr.parish_home', '=', 'ph.id')
             ->leftJoin('villages as vh', 'sr.village_home', '=', 'vh.id')
+
+            ->leftJoin('refugee_camps as rc', 'sr.refugee_camps_id', '=', 'rc.id')
 
             ->where('u.user_type', '=', 'student')
             ->get();
@@ -58,6 +60,8 @@ class ReportsController extends Controller
             $resultdetails[$key]['Sub-County of Origin'] = $beneficiary->subcountyhome;
             $resultdetails[$key]['Parish of Origin'] = $beneficiary->parishhome;
             $resultdetails[$key]['Village of Origin'] = $beneficiary->villagehome;
+            $resultdetails[$key]['Is a Refugee'] = $beneficiary->isrefugee;
+            $resultdetails[$key]['Refugee Settlement'] = $beneficiary->refugee_camp;
             $key++;
         }
 
