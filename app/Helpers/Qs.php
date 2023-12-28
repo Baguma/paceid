@@ -113,6 +113,27 @@ class Qs
 
     }
 
+    public static  function getStudentNokData($remove = [])
+    {
+        $data = [
+
+            'fname', 'lname', 'phone1', 'phone2', 'relationship', 'address', 'studentid'
+        ];
+        return $remove ? array_values(array_diff($data, $remove)) : $data;
+    }
+
+    public static  function getBusinessDevelopmentDetails($remove = [])
+    {
+        $data = [
+
+            'student_id', 'business_types_id', 'business_name', 'is_registered', 'business_address', 'duration', 'business_trainings_id',
+            'location_of_training', 'current_revenue', 'access_to_finance', 'type_of_finance', 'bank_usage', 'male_employed', 'female_employed',
+            'digitalized', 'digital_usage', 'created_by', 'updated_by'
+        ];
+
+        return $remove ? array_values(array_diff($data, $remove)) : $data;
+    }
+
     public static function decodeHash($str, $toString = true)
     {
         $date = date('dMY').'CJ';

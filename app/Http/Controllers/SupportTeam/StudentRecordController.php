@@ -7,12 +7,14 @@ use App\Helpers\Mk;
 use App\Http\Requests\Student\StudentRecordCreate;
 use App\Http\Requests\Student\StudentRecordUpdate;
 use App\Models\Assistance;
+use App\Models\BusinessTraining;
+use App\Models\BusinessType;
 use App\Models\Challenge;
 use App\Models\District;
 use App\Models\EducationLevel;
 use App\Models\MaritalStatus;
 use App\Models\Occupation;
-use App\Models\Parish;
+use App\Models\Relationship;
 use App\Models\SubCounty;
 use App\Models\Village;
 use App\Repositories\LocationRepo;
@@ -64,14 +66,20 @@ class StudentRecordController extends Controller
         $data['challenges'] = Challenge::all();
         $data['support'] = Assistance::all();
         $data['education'] = EducationLevel::all();
+        $data['relationships'] = Relationship::where('status', '=', '1')->get();
+        $data['business_types'] = BusinessType::where('status', '=', '1')->get();
+        $data['business_trainings'] = BusinessTraining::where('status', '=', '1')->get();
 
         return view('pages.support_team.students.add', $data);
     }
 
     public function store(StudentRecordCreate $req)
     {
-       $data =  $req->only(Qs::getUserRecord());
-       $sr =  $req->only(Qs::getStudentData());
+        //($req);
+        $data =  $req->only(Qs::getUserRecord());
+        $sr =  $req->only(Qs::getStudentData());
+        $nok = $req->only(Qs::getStudentNokData());
+        $bdsn = $req->only(Qs::getBusinessDevelopmentDetails());
 
         $ct = $this->my_class->findTypeByClass(6)->code;
        /* $ct = ($ct == 'J') ? 'JSS' : $ct;
@@ -120,12 +128,27 @@ class StudentRecordController extends Controller
         $sr['support'] = $req->support_area;
         $sr['support_notes'] = $req->support_area_notes;
 
+        $sr['id_type'] = $req->idtype;
         $sr['nin'] = $req->nin;
 
         $sr['is_refugee'] = $req->isrefugee;
         $sr['refugee_camps_id'] = $req->refugee_camp;
 
+        $nok['studentid'] = $user->id;
+        $nok['fname'] = $req->nok_fname;
+        $nok['lname'] = $req->nok_lname;
+        $nok['phone1'] = $req->nok_phone;
+        $nok['phone2'] = $req->nok_phon2;
+        $nok['relationship'] = $req->nok_relationship;
+        $nok['address'] = $req->nok_address;
+
+        $updatedbyid = Auth::user()->id;
+        $nok['created_by'] = $updatedbyid;
+        $nok['updated_by'] = $updatedbyid;
+
         $this->student->createRecord($sr); // Create Student
+        $this->student->createNokRecord($nok); // Create Next of Kin
+
         return Qs::jsonStoreOk();
     }
 

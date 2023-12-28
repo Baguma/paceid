@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DigitalUsage;
+use App\Models\FinanceType;
 use App\Models\Parish;
 use App\Models\RefugeeCamp;
 use App\Models\SubCounty;
@@ -33,5 +35,17 @@ class DropdownController extends Controller
         $camps = RefugeeCamp::select('id','name')->get();
 
         return Response::json($camps);
+    }
+
+    function findFinanceTypes(Request $request){
+        $fintyps = FinanceType::select('id','name')->get();
+
+        return Response::json($fintyps);
+    }
+
+    function findDigitalUsages(Request $request){
+        $digusage = DigitalUsage::select('id','name')->get();
+
+        return Response::json($digusage);
     }
 }

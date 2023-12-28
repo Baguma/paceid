@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Helpers\Qs;
 use App\Models\Dorm;
+use App\Models\NokDetail;
 use App\Models\Promotion;
 use App\Models\StudentRecord;
 
@@ -38,6 +39,11 @@ class StudentRepo {
     public function createRecord($data)
     {
         return StudentRecord::create($data);
+    }
+
+    public function createNokRecord($data)
+    {
+        return NokDetail::create($data);
     }
 
     public function updateRecord($id, array $data)

@@ -184,3 +184,5 @@ Route::get('/findSubcounty', [App\Http\Controllers\DropdownController::class, 'f
 Route::get('/findParish', [App\Http\Controllers\DropdownController::class, 'findParish'])->name('/findParish')->middleware('auth');
 Route::get('/findVillage', [App\Http\Controllers\DropdownController::class, 'findVillage'])->name('/findVillage')->middleware('auth');
 Route::get('/findCamps', [App\Http\Controllers\DropdownController::class, 'findCamps'])->name('/findCamps')->middleware('auth');
+Route::get('/findFinanceType', [App\Http\Controllers\DropdownController::class, 'findFinanceTypes'])->name('/findFinanceType')->middleware('auth');
+Route::get('/findDigitalUsage', [App\Http\Controllers\DropdownController::class, 'findDigitalUsages'])->name('/findDigitalUsage')->middleware('auth');
